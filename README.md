@@ -327,3 +327,61 @@ public class MainApp {
 
 
 ```
+# Spring Bean Lifecycle – Diagram Explanation
+
+---
+
+## Diagram
+
+```mermaid
+flowchart TD
+    A[1. Loading Bean Definitions] --> B[2. Bean Instantiation]
+    B --> C[3. Bean Initialization]
+    C --> D[4. Bean Usage]
+    D --> E[5. Bean Destruction]
+```
+# Spring Bean Lifecycle Explanation
+
+The lifecycle of a Spring bean goes through several important stages.  
+Spring manages these stages automatically.
+
+---
+
+## 1. Loading Bean Definitions
+- Spring reads the metadata from **XML**, **Java-based config**, or **Annotations**.
+- These definitions tell Spring about the beans it should manage.  
+
+**Example:**  
+- XML: `<bean id="student" class="com.example.Student"/>`  
+- Java Config: `@Bean`  
+- Annotation: `@Component`
+
+---
+
+## 2. Bean Instantiation
+- Spring creates the actual object of the bean class.
+- Equivalent to using `new Student()` but Spring does this internally.
+
+---
+
+## 3. Bean Initialization
+- After instantiation, Spring injects dependencies (like `@Autowired` fields).
+- Initialization methods are called:  
+  - `@PostConstruct`  
+  - or methods specified using `init-method`.
+
+---
+
+## 4. Bean Usage
+- The bean is **fully ready** and can be used inside the application.  
+- Example: calling `student.study()` inside business logic.
+
+---
+
+## 5. Bean Destruction
+- When the `ApplicationContext` is closed or the application shuts down, Spring cleans up.
+- Destruction methods are called:  
+  - `@PreDestroy`  
+  - or methods specified using `destroy-method`.
+
+---
