@@ -257,4 +257,72 @@ public class MainApp {
 }
 
 ```
+# @Component Annotation in Spring
 
+The `@Component` annotation in Spring is used to declare a class as a **Spring Bean**, which means it becomes a managed component inside the **Spring Application Context**.
+
+## Key Points:
+- It tells Spring to **automatically detect and manage** the class during application startup.
+- The managed beans are then made available for:
+  - **Dependency Injection (DI)**
+  - **Other Spring features** such as AOP, transactions, etc.
+
+---
+
+# Annotation-Based Configuration Example
+
+# @ComponentScan in Spring
+
+## What it does
+- `@ComponentScan` tells Spring **where to look** for classes annotated with stereotypes like:  
+  - `@Component`  
+  - `@Service`  
+  - `@Repository`  
+  - `@Controller`  
+- It **scans the specified package** (and its sub-packages) and **automatically registers those classes as Spring Beans** in the Application Context.
+
+---
+
+### 1. `Student.java`
+```java
+import org.springframework.stereotype.Component;
+
+@Component   // Marks this as a Spring Bean
+public class Student {
+    private int id = 101;
+    private String name = "Shreyash";
+
+    public void displayInfo() {
+        System.out.println("Student ID: " + id);
+        System.out.println("Student Name: " + name);
+    }
+}
+
+```
+### 2.`Configuration Class`
+```java
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.example") // Change to your package name
+public class AppConfig {
+}
+
+```
+### 3.`Main.java`
+```java
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class MainApp {
+    public static void main(String[] args) {
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext(AppConfig.class);
+
+        Student student = context.getBean(Student.class);
+        student.displayInfo();
+    }
+}
+
+```
