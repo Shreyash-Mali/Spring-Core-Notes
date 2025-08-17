@@ -337,9 +337,9 @@ public class MainApp {
 flowchart TD
     A[Bean Definition Loading] --> B[Bean Instantiation]
     B --> C[Dependency Injection]
-    C --> D[Initialization (@PostConstruct, init-method)]
+    C --> D["Initialization (@PostConstruct, init-method)"]
     D --> E[Bean Ready for Use]
-    E --> F[Destruction (@PreDestroy, destroy-method)]
+    E --> F["Destruction (@PreDestroy, destroy-method)"]
 ```
 # Spring Bean Lifecycle Explanation
 
@@ -386,4 +386,5 @@ Spring manages these stages automatically.
   - or methods specified using `destroy-method`.
 
 ---
+
 
