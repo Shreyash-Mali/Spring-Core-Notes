@@ -335,10 +335,11 @@ public class MainApp {
 
 ```mermaid
 flowchart TD
-    A[1. Loading Bean Definitions] --> B[2. Bean Instantiation]
-    B --> C[3. Bean Initialization]
-    C --> D[4. Bean Usage]
-    D --> E[5. Bean Destruction]
+    A[Bean Definition Loading] --> B[Bean Instantiation]
+    B --> C[Dependency Injection]
+    C --> D[Initialization (@PostConstruct, init-method)]
+    D --> E[Bean Ready for Use]
+    E --> F[Destruction (@PreDestroy, destroy-method)]
 ```
 # Spring Bean Lifecycle Explanation
 
@@ -385,3 +386,4 @@ Spring manages these stages automatically.
   - or methods specified using `destroy-method`.
 
 ---
+
