@@ -331,15 +331,15 @@ public class MainApp {
 
 ---
 
-## Diagram
+# Spring Bean Lifecycle
 
 ```mermaid
 flowchart TD
     A[Bean Definition Loading] --> B[Bean Instantiation]
     B --> C[Dependency Injection]
-    C --> D["Initialization (@PostConstruct, init-method)"]
+    C --> D[Initialization (@PostConstruct, init-method)]
     D --> E[Bean Ready for Use]
-    E --> F["Destruction (@PreDestroy, destroy-method)"]
+    E --> F[Destruction (@PreDestroy, destroy-method)]
 ```
 # Spring Bean Lifecycle Explanation
 
@@ -386,5 +386,98 @@ Spring manages these stages automatically.
   - or methods specified using `destroy-method`.
 
 ---
+# Design Patterns
+
+- Design patterns are like pre-tested and proven blueprints for solving common software problems.  
+- They help developers write cleaner, more organized code by following established patterns for various tasks.  
+
+### Examples:
+- **Singleton Pattern**  
+- **Factory Method Pattern**  
+- **DAO (Data Access Object) Design Pattern**  
+- **MVC (Model-View-Controller) Design Pattern**
+
+---
+# Hard Coding in Java
+
+- **Definition**:  
+  "Hard coding" in Java means directly putting specific values (i.e., numbers or strings) in your code rather than using variables or external configuration.
+
+- **Disadvantage**:  
+  This can make your code less adaptable and more challenging to change later.
+
+### Example:
+```java
+public class Calculator {
+    public int add() {
+        int result = 5 + 3; // Hard-coded values
+        return result;
+    }
+}
+```
+# Tightly Coupled vs Loosely Coupled Classes
+
+### Tightly Coupled Classes
+- Tightly coupled classes have a strong dependency, where one class directly depends on another.
+
+```java
+class Engine {
+    public void start() {
+        // Start the engine
+    }
+}
+
+public class Car {
+    private Engine engine;
+
+    public Car() {
+        engine = new Engine(); // Tightly coupled to Engine class
+    }
+
+    public void start() {
+        engine.start();
+    }
+}
+
+```
+
+# Loosely Coupled Classes
+- Loosely coupled classes minimize dependencies and make the code more maintainable and flexible.
+```java
+public interface Engine {
+    void start();
+}
+
+public class ElectricEngine implements Engine {
+    public void start() {
+        // Start an electric engine
+    }
+}
+
+public class PetrolEngine implements Engine {
+    public void start() {
+        // Start a petrol engine
+    }
+}
+
+public class Car {
+    private Engine engine;
+
+    public Car(Engine engine) {
+        this.engine = engine; // Loosely coupled to Engine class
+    }
+
+    public void start() {
+        engine.start();
+    }
+}
+
+```
+# Dependency Injection
+
+- It is a design pattern.
+- It's main task is to inject one object into     another object.
+- It is used to achive loose coupling in java
+
 
 
